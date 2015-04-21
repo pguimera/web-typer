@@ -1,0 +1,6 @@
+/*!
+ * WebTyperJS v0.0.1
+ * Author: Pablo Guimera
+ * License: MIT
+ **/
+!function(t){"use strict";function i(t,i){if(!t)throw new Error("No options found");this.content=t.content||["Look mum I'm typing!"],this.el=t.el||document,this.delay=t.delay||2e3,this.speed=t.speed||200,this.callback="function"==typeof i?i:null,this.webTyper=null,this.iterator=0,this.current=this.content[this.iterator],this.partial="",this.isDeleting=!1,this.tick=0,this._init()}return i.prototype={_init:function(){this.webTyper=document.createElement("span"),this.webTyper.className="web-typer",this.el.appendChild(this.webTyper),this._keyPress()},_keyPress:function(){this.partial=this.current.substring(0,this.partial.length+(this.isDeleting?-1:1)),this.webTyper.innerHTML=this.partial;var t=this.isDeleting?(this.speed-Math.random()*this.speed*.2)/2:this.speed-Math.random()*this.speed*.2;this.isDeleting||this.partial!==this.current?this.isDeleting&&""===this.partial&&(this.isDeleting=!1,this.iterator=(this.iterator+1)%this.content.length,this.current=this.content[this.iterator],t=this.speed,this.callback&&this.callback.call(this)):(t=this.delay,this.isDeleting=!0);var i=this;this.tick=setTimeout(function(){i._keyPress()},t)}},t.WebTyper=i}(window);
